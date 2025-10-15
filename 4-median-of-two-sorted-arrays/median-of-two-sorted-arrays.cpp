@@ -1,17 +1,24 @@
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& A, vector<int>& B) {
-        vector<int> ans;
-        int m=A.size(),n=B.size(),i=0,j=0;
-        while(i<m && j<n){
-            if(A[i]<B[j]) ans.push_back(A[i++]);
-            else ans.push_back(B[j++]);
-        }
-        while(i<m) ans.push_back(A[i++]);
-        while(j<n) ans.push_back(B[j++]);
-        int k=ans.size();
-        if(k%2==0) return ((ans[k/2]+ans[(k/2)-1])/2.0);
-        else return ans[k/2];
+        int n1=A.size(),n2=B.size(),n=n1+n2;
+        if(n1>n2) return findMedianSortedArrays(B,A);
+        int low=0,high=n1;
+        int left=(n+1)/2;
+        while(low<=high){
+            int mid1=(low+high)>>1;
+            int mid2=left-mid1;
+            int l1=INT_MIN, l2=INT_MIN, r1=INT_MAX, r2=INT_MAX;
+            if(mid1<n1) r1=A[mid1];
+            if(mid2<n2) r2=B[mid2];
+            if(mid1-1 >=0) l1=A[mid1-1];
+            if(mid2-1 >=0) l2=B[mid2-1];
+            if(l1<=r2 && l2<=r1){
+                if(n%2==1) return max(l1,l2);
+                return ((double)(max(l1,l2)+min(r1,r2))/2.0);
+            }else if(l1>r2) high=mid1-1;
+            else low=mid1+1;
+        }return 0.0;
 
     }
 };
