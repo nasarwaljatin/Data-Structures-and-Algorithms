@@ -10,12 +10,6 @@ class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode *temp1=headA,*temp2=headB;
-        while(temp1 && temp1->next){
-            temp1=temp1->next;
-        }while(temp2 && temp2->next){
-            temp2=temp2->next;
-        }if(temp1!=temp2) return NULL;
-        temp1=headA,temp2=headB;
         while(temp1!=temp2){
             if(temp1==NULL) temp1=headB;
             else temp1=temp1->next;
