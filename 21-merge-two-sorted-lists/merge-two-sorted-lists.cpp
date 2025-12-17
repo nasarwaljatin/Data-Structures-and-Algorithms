@@ -21,14 +21,8 @@ public:
             if(a->val >= b->val) {temp->next=b;b=b->next;}
             else {temp->next=a;a=a->next;}
             temp=temp->next;
-        }while(a){
-            temp->next=a;
-            a=a->next;
-            temp=temp->next;
-        }while(b){
-            temp->next=b;
-            b=b->next;
-            temp=temp->next;
-        }return dummy->next;
+        }if(a) temp->next=a;
+        else temp->next=b;
+        return dummy->next;
     }
 };
