@@ -11,9 +11,6 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        if(!list1 && !list2) return NULL;
-        if(!list1 && list2) return list2;
-        if(list1 && !list2) return list1;
         ListNode *dummy=new ListNode(-1);
         ListNode *a=list1,*b=list2;
         ListNode *temp=dummy;
