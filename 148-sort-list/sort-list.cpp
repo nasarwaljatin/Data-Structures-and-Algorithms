@@ -1,28 +1,32 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
+ ListNode* findmid(ListNode* head){
+    ListNode *slow=head,*fast=head->next;
+    while(fast && fast->next){
+        slow=slow->next;
+        fast=fast->next->next;
+    }return slow;
+ }
+ ListNode* merger2sortedLL(ListNode* list1, ListNode *list2){
+    ListNode *dummy=new ListNode(-1),*temp=dummy,*a=list1,*b=list2;
+    while(a&&b){
+        if(a->val >= b->val){
+            temp->next=b;
+            b=b->next;
+        }else{
+            temp->next=a;
+            a=a->next;
+        }temp=temp->next;
+    }if(a) temp->next=a;
+    else temp->next=b;
+    return dummy->next;
+ }
 class Solution {
 public:
     ListNode* sortList(ListNode* head) {
         if(!head || !head->next) return head;
-        vector<int> a;
-        ListNode *temp=head;
-        while(temp){
-            a.push_back(temp->val);
-            temp=temp->next;
-        }sort(a.begin(),a.end());
-        head->val=a[0];
-        temp=head;
-        for(int i=1;i<a.size();i++){
-            temp=temp->next;
-            temp->val=a[i];
-        }return head;
+        ListNode *mid=findmid(head),*lefth=head,*rhead=mid->next;
+        mid->next=NULL;
+        lefth=sortList(lefth);
+        rhead=sortList(rhead);
+        return merger2sortedLL(lefth,rhead);
     }
 };
