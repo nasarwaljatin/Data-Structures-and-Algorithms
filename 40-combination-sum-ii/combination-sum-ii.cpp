@@ -6,8 +6,8 @@ public:
             ans.push_back(ds);
             return;
         }
-        if (i >= c.size() || s < 0)
-            return;
+        // if (i >= c.size() || s < 0)
+        //     return;
         for (int j = i; j < c.size() && s >= c[j]; j++) {
             if (j > i && c[j] == c[j - 1])
                 continue;
