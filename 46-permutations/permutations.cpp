@@ -1,24 +1,21 @@
 class Solution {
 public:
-    void fn(vector<int>& ds,vector<vector<int>>& ans,vector<int>& nums,vector<int>& used){
-        if(nums.size()==ds.size()){
-            ans.push_back(ds);
+    void fn(vector<vector<int>>& ans,vector<int>& nums,int k){
+        if(k==nums.size()){
+            ans.push_back(nums);
             return;
         }
-        for(int k=0;k<nums.size();k++){
-            if (used[k] == 1) continue;
-            used[k] = 1;
-            ds.push_back(nums[k]);
-            fn(ds,ans,nums,used);
-            ds.pop_back();
-            used[k]=0;
+        for(int i=k;i<nums.size();i++){
+            swap(nums[i],nums[k]);
+            fn(ans,nums,k+1);
+            swap(nums[i],nums[k]);
         }
     }
     vector<vector<int>> permute(vector<int>& nums) {
-        vector<int> ds;
+        // vector<int> ds;
         vector<vector<int>> ans;
-        vector<int> used(nums.size(),0);
-        fn(ds,ans,nums,used);
+        // vector<int> used(nums.size(),0);
+        fn(ans,nums,0);
         return ans;
     }
 };
