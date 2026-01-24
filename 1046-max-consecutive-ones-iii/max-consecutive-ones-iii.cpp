@@ -1,19 +1,15 @@
 class Solution {
 public:
-    int longestOnes(vector<int>& A, int k) {
-        int n=A.size(),i=0,j=0,c=0,maxi=INT_MIN;
+    int longestOnes(vector<int>& nums, int k) {
+        int i=0,j=0,n=nums.size(),maxi=0;
         while(j<n){
-            int ws=j-i+1;
-            if(A[j]==1) c++;
-            if(k>=ws-c){
-                j++;
-                // if(A[j]==1) c++;
-                maxi=max(maxi,j-i);
-            }else{
-                if(A[i]==1) c--;
+            if(nums[j]==0) k--;
+            while(k<0){
+                if(nums[i]==0) k++;
                 i++;
-                maxi=max(maxi,j-i);
             }
+            maxi=max(j-i+1,maxi);
+            j++;
         }return maxi;
     }
 };
