@@ -3,7 +3,7 @@ public:
     int totalFruit(vector<int>& nums) {
         int n=nums.size(),i=0,j=0,maxi=0;
         map<int,int> mpp;
-        while(j<n && i<n){
+        while(j<n){
             mpp[nums[j]]++;
             if(mpp.size()>2){
                 mpp[nums[i]]--;
