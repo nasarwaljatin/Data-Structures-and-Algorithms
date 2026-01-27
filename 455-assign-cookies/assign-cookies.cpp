@@ -5,8 +5,8 @@ public:
         sort(s.begin(),s.end());
         int gn=g.size(),sn=s.size(),i=0,j=0,c=0;
         while(i<gn && j<sn){
-            if(g[i]<=s[j]){i++;j++;c++;}
-            else j++;
+            if(g[i]<=s[j]){i++;c++;}
+            j++;
         }return c;
     }
 };
