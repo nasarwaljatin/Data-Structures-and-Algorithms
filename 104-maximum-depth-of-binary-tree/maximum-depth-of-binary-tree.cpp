@@ -11,14 +11,11 @@
  */
 class Solution {
 public:
-    int fn(TreeNode* node,int n){
-        if(!node) return 0;
-        int l=fn(node->left,n+1);
-        int r=fn(node->right,n+1);
-        return max(l,r)+1;
-    }
-    int maxDepth(TreeNode* root ) {
+    int c=1;
+    int maxDepth(TreeNode* root) {
         if(!root) return 0;
-        return fn(root,0);
+        int l=maxDepth(root->left);
+        int r=maxDepth(root->right);
+        return max(l,r)+1;
     }
 };
