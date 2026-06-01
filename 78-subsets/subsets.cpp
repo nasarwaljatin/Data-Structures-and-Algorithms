@@ -1,18 +1,16 @@
 class Solution {
 public:
-    void sets(vector<int>& nums, int i,vector<int>& curr, vector<vector<int>>& ans){
-        if(i==nums.size()){
-            ans.push_back(curr);
-            return;
-        }curr.push_back(nums[i]);
-        sets(nums,i+1,curr,ans);
-        curr.pop_back();
-        sets(nums,i+1,curr,ans);
+    void fn(vector<int>& nums,vector<vector<int>>& ans,vector<int>& d,int i){
+        if(i==nums.size()) {ans.push_back(d);return;}
+        d.push_back(nums[i]);
+        fn(nums,ans,d,i+1);
+        d.pop_back();
+        fn(nums,ans,d,i+1);
     }
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>> ans;
-        vector<int> curr;
-        sets(nums,0, curr, ans);
+        vector<int> d;
+        fn(nums,ans,d,0);
         return ans;
     }
 };
