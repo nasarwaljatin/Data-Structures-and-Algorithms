@@ -1,18 +1,17 @@
 class Solution {
 public:
-    void fn(int i,int s,vector<int>& ds,vector<vector<int>>& ans,vector<int>& c){
-        if(s==0) {ans.push_back(ds);
-        return ;}
-        if (i >= c.size() || s < 0) return;
-        ds.push_back(c[i]);
-        fn(i,s-c[i],ds,ans,c);
-        ds.pop_back();
-        fn(i+1,s,ds,ans,c);
+    void fn(vector<int>& nums,vector<vector<int>>& ans,vector<int>& d,int s,int i,int t){
+        if(s==t){ans.push_back(d);return;}
+        if (s > t || i >= nums.size()) return;
+        d.push_back(nums[i]);
+        fn(nums,ans,d,s+nums[i],i,t);
+        d.pop_back();
+        fn(nums,ans,d,s,i+1,t);
     }
-    vector<vector<int>> combinationSum(vector<int>& c, int target) {
+    vector<vector<int>> combinationSum(vector<int>& nums, int t) {
         vector<vector<int>> ans;
-        vector<int> ds;
-        fn(0,target,ds,ans,c);
+        vector<int> d;
+        fn(nums,ans,d,0,0,t);
         return ans;
     }
 };
