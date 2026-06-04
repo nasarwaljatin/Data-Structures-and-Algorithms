@@ -1,26 +1,23 @@
 class Solution {
 public:
-    void fn(int i, int s, vector<int>& ds, vector<vector<int>>& ans,
-            vector<int>& c) {
-        if (s == 0) {
-            ans.push_back(ds);
+    void fn(vector<vector<int>>& ans,vector<int>& nums,int sum,int idx,vector<int>& d,int t){
+        if(sum==t){
+            ans.push_back(d);
             return;
-        }
-        // if (i >= c.size() || s < 0)
-        //     return;
-        for (int j = i; j < c.size() && s >= c[j]; j++) {
-            if (j > i && c[j] == c[j - 1])
-                continue;
-            ds.push_back(c[j]);
-            fn(j + 1, s - c[j], ds, ans, c);
-            ds.pop_back();
+        }if(sum>t) return;
+        for(int i=idx;i<nums.size();i++){
+            if(nums[i]>t) break;
+            if(i>idx && nums[i]==nums[i-1]) continue;
+            d.push_back(nums[i]);
+            fn(ans,nums,sum+nums[i],i+1,d,t);
+            d.pop_back();
         }
     }
-    vector<vector<int>> combinationSum2(vector<int>& c, int target) {
+    vector<vector<int>> combinationSum2(vector<int>& nums, int t) {
         vector<vector<int>> ans;
-        vector<int> ds;
-        sort(c.begin(), c.end());
-        fn(0, target, ds, ans, c);
+        vector<int> d;
+        sort(nums.begin(),nums.end());
+        fn(ans,nums,0,0,d,t);
         return ans;
     }
 };
