@@ -1,19 +1,21 @@
 class Solution {
 public:
-    void fn(int k, vector<vector<int>>& ans, vector<int>& ds, vector<int>& c) {
-        ans.push_back(ds);
-        for (int i = k; i < c.size(); i++) {
-            if (i > k && c[i] == c[i - 1]) continue;
-            ds.push_back(c[i]);
-            fn(i + 1, ans, ds, c);
-            ds.pop_back();
-        }
+    void fn(vector<int>& nums,set<vector<int>>& ans,vector<int>& d,int i){
+        if(i==nums.size()){ans.insert(d);return;}
+        d.push_back(nums[i]);
+        fn(nums,ans,d,i+1);
+        d.pop_back();
+        fn(nums,ans,d,i+1);
     }
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        vector<vector<int>> ans;
-        vector<int> ds;
-        fn(0, ans, ds, nums);
-        return ans;
+        set<vector<int>> ans;
+        vector<vector<int>> ansi;
+        vector<int> d;
+        sort(nums.begin(),nums.end());
+        fn(nums,ans,d,0);
+        for(auto it:ans){
+            ansi.push_back(it);
+        }
+        return ansi;
     }
 };
