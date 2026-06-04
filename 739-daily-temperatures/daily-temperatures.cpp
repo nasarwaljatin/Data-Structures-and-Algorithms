@@ -5,7 +5,6 @@ public:
         int n=nums.size();
         vector<int> ans(n,0);
         for(int i=n-1;i>=0;i--){
-            if(st.empty()) ans[i]=0;
             while(!st.empty() && st.top().first<=nums[i]) st.pop();
             if(!st.empty()) ans[i]=st.top().second-i;
             st.push({nums[i],i});
