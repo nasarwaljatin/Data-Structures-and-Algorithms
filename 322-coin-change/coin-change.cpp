@@ -9,6 +9,7 @@ public:
                 if(nums[i-1]<=j) dp[i][j]=min(dp[i-1][j],1+dp[i][j-nums[i-1]]);
                 else dp[i][j]=dp[i-1][j];
             }
-        }return dp[n][d] > d ? -1 : dp[n][d]; 
+        }if(dp[n][d]>d) return -1;
+        else return dp[n][d];
     }
 };
