@@ -2,10 +2,9 @@ class Solution {
 public:
     int longestPalindromeSubseq(string a) {
         int n=a.size();
-        string b;
-        for(int i=n-1;i>=0;i--){
-            b.push_back(a[i]);
-        }vector<vector<int>> dp(n+1,vector<int>(n+1,0));
+        string b=a;
+        reverse(b.begin(),b.end());
+        vector<vector<int>> dp(n+1,vector<int>(n+1,0));
         for(int i=1;i<=n;i++){
             for(int j=1;j<=n;j++){
                 if(a[i-1]==b[j-1]) dp[i][j]=1+dp[i-1][j-1];
