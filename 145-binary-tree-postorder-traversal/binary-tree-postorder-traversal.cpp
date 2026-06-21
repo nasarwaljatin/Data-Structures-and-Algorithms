@@ -15,7 +15,6 @@ public:
         vector<int> ans;
         if(!root) return ans;
         stack<TreeNode*> st1;
-        stack<int> st2;
         st1.push(root);
         while(!st1.empty()){
             int n=st1.size();
@@ -24,11 +23,9 @@ public:
                 st1.pop();
                 if(temp->left) st1.push(temp->left);
                 if(temp->right) st1.push(temp->right);
-                st2.push(temp->val);
+                ans.push_back(temp->val);
             }
-        }while(!st2.empty()){
-            ans.push_back(st2.top());
-            st2.pop();
-        }return ans;
+        }reverse(ans.begin(),ans.end());
+        return ans;
     }
 };
