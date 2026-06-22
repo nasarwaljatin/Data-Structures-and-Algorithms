@@ -24,9 +24,9 @@ public:
                 TreeNode* node=q.front();q.pop();
                 if(node->left) q.push(node->left);
                 if(node->right) q.push(node->right);
-                temp.push_back(node->val);
+                if(flag) temp.push_back(node->val);
+                else temp.insert(temp.begin(),node->val);
             }flag=!flag;
-            if(flag) reverse(temp.begin(),temp.end());
             ans.push_back(temp);
         }return ans;
     }
