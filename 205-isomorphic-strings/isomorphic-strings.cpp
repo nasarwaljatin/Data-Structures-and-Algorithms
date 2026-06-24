@@ -2,7 +2,7 @@ class Solution {
 public:
     bool isIsomorphic(string s, string t) {
         int n=s.size();
-        unordered_map<int,int> mpp,mppi;
+        unordered_map<char,char> mpp,mppi;
         bool a=true,b=true;
         for(int i=0;i<n;i++){
             if(mpp.find(s[i])==mpp.end()) mpp[s[i]]=t[i];
