@@ -14,7 +14,7 @@ public:
             int n=maxH.top().first;
             char a=maxH.top().second;
             maxH.pop();
-            while(n--) ans+=a;
+            ans.append(n, a);
         }return ans;
     }
 };
